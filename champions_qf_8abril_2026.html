@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Champions League Report — 8 Abril 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Lora:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fdfbf7; color: #1a1a2e; font-family: 'Poppins', sans-serif; font-size: 15px; line-height: 1.6; }
+  .masthead { background: #0c1a2e; color: #fff; padding: 48px 40px 36px; position: relative; overflow: hidden; }
+  .masthead-logo { position: absolute; top: 0; right: 0; opacity: 0.92; width: 80px; height: 80px; }
+  .masthead-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #e8a020; margin-bottom: 8px; font-weight: 600; }
+  .masthead-title .w1 { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 48px; color: #fff; display: block; }
+  .masthead-title .w2 { font-family: 'Lora', serif; font-style: italic; font-weight: 400; font-size: 44px; color: #e8a020; display: block; }
+  .masthead-date { font-size: 13px; color: #8a9bb5; margin-bottom: 20px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { background: rgba(232,160,32,0.15); border: 1px solid rgba(232,160,32,0.35); color: #e8a020; border-radius: 20px; padding: 4px 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .legend-bar { background: #f0ece3; border-left: 4px solid #e8a020; padding: 12px 40px; font-size: 12px; color: #555; }
+  .legend-bar strong { color: #0c1a2e; }
+  .content { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+  .league-banner { background: #166534; color: #fff; padding: 10px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 6px 6px 0 0; margin-top: 36px; }
+  .match-card { background: #fff; border: 1px solid #e5e0d5; border-top: none; overflow: hidden; }
+  .match-card + .match-card { border-top: 1px solid #e5e0d5; }
+  .match-card:last-of-type { border-radius: 0 0 10px 10px; }
+  .match-header { background: #0c1a2e; color: #fff; padding: 14px 20px; display: flex; justify-content: space-between; align-items: flex-start; }
+  .match-name { font-weight: 700; font-size: 16px; }
+  .match-meta { font-size: 11px; color: #8a9bb5; margin-top: 3px; }
+  .match-global { background: #e8a020; color: #0c1a2e; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; white-space: nowrap; margin-top: 4px; }
+  .odds-strip { display: grid; grid-template-columns: repeat(5, 1fr); background: #f8f6f0; border-bottom: 1px solid #e5e0d5; }
+  .odd-cell { padding: 10px 8px; text-align: center; border-right: 1px solid #e5e0d5; }
+  .odd-cell:last-child { border-right: none; }
+  .odd-team { font-size: 11px; color: #666; font-weight: 500; margin-bottom: 3px; }
+  .odd-val { font-size: 16px; font-weight: 700; }
+  .odd-fav { color: #b91c1c; }
+  .odd-pos { color: #166534; }
+  .stats-section { padding: 16px 20px; }
+  .stats-section h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 10px; font-weight: 600; }
+  .stats-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .stats-table th { background: #f5f2eb; color: #0c1a2e; font-weight: 600; padding: 8px 10px; text-align: center; font-size: 11px; }
+  .stats-table th:first-child { text-align: left; }
+  .stats-table td { padding: 8px 10px; border-bottom: 1px solid #f0ece3; text-align: center; }
+  .stats-table td:first-child { text-align: left; font-weight: 600; }
+  .stats-table tr:last-child td { border-bottom: none; }
+  .injuries-strip { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #e5e0d5; }
+  .injury-side { padding: 12px 16px; }
+  .injury-side:first-child { border-right: 1px solid #e5e0d5; }
+  .injury-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #999; font-weight: 600; margin-bottom: 8px; }
+  .injury-item { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid #f5f2eb; font-size: 12px; }
+  .injury-item:last-child { border-bottom: none; }
+  .injury-name { color: #0c1a2e; font-weight: 500; }
+  .badge-out { background: #fee2e2; color: #b91c1c; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; }
+  .badge-doubt { background: #fef3c7; color: #92400e; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; }
+  .badge-ok { background: #dcfce7; color: #166534; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; }
+  .stakes-box { background: #0c1a2e; color: #c9d5e8; padding: 16px 20px; margin: 16px 20px; border-radius: 6px; font-family: 'Lora', serif; font-style: italic; font-size: 14px; line-height: 1.7; border-left: 4px solid #e8a020; }
+  .stakes-box strong { color: #e8a020; font-style: normal; font-family: 'Poppins', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 6px; font-weight: 600; }
+  .analysis-section { padding: 0 20px 20px; }
+  .analysis-section h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 10px; font-weight: 600; }
+  .analysis-bullets { list-style: none; }
+  .analysis-bullets li { padding: 8px 0 8px 20px; border-bottom: 1px solid #f0ece3; font-size: 13px; color: #333; position: relative; }
+  .analysis-bullets li:last-child { border-bottom: none; }
+  .analysis-bullets li::before { content: ''; position: absolute; left: 0; top: 16px; width: 8px; height: 8px; border-radius: 50%; background: #e8a020; }
+  .conclusions { margin-top: 48px; background: #fff; border: 1px solid #e5e0d5; border-radius: 10px; overflow: hidden; }
+  .conclusions-header { background: #0c1a2e; color: #fff; padding: 14px 20px; font-weight: 700; font-size: 14px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .conclusions-header span { color: #e8a020; }
+  .conclusions-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .conc-cell { padding: 16px 20px; border-right: 1px solid #e5e0d5; border-bottom: 1px solid #e5e0d5; }
+  .conc-cell:nth-child(even) { border-right: none; }
+  .conc-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .conc-label { font-size: 10px; color: #e8a020; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 6px; }
+  .conc-val { font-size: 14px; font-weight: 600; color: #0c1a2e; }
+  .conc-sub { font-size: 12px; color: #777; margin-top: 2px; }
+  .report-footer { margin-top: 40px; padding: 20px; font-size: 11px; color: #aaa; text-align: center; border-top: 1px solid #e5e0d5; line-height: 1.8; }
+  .antecedente { background: #fff8e1; border: 1px solid #f5e6a0; border-radius: 8px; padding: 14px 20px; margin-bottom: 24px; font-size: 13px; color: #555; }
+  .antecedente strong { color: #0c1a2e; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <svg class="masthead-logo" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="80" height="80" fill="#0c1a2e"/>
+    <rect x="10" y="10" width="60" height="60" rx="8" fill="none" stroke="#e8a020" stroke-width="2"/>
+    <text x="40" y="30" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="11" fill="#fff">LOCK</text>
+    <text x="40" y="44" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700" font-size="9" fill="#e8a020">SPORTS</text>
+    <text x="40" y="56" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700" font-size="9" fill="#e8a020">DATA</text>
+    <circle cx="40" cy="65" r="3" fill="#e8a020"/>
+  </svg>
+  <p class="masthead-eyebrow">Informe Diario de Futbol</p>
+  <div class="masthead-title">
+    <span class="w1">Futbol Matchday</span>
+    <span class="w2">Report</span>
+  </div>
+  <p class="masthead-date">8 de Abril, 2026 | UEFA Champions League — Cuartos de Final, Ida (Día 2)</p>
+  <div class="pills">
+    <span class="pill">Cuotas</span>
+    <span class="pill">Champions</span>
+    <span class="pill">Totales</span>
+    <span class="pill">Alineaciones</span>
+    <span class="pill">Lesiones</span>
+  </div>
+</div>
+
+<div class="legend-bar">
+  <strong>Cuotas en formato americano — Playdoit MX.</strong> Lesiones: UEFA.com / Transfermarkt. Cuartos de final ida — vuelta 14 de abril. Ayer: Bayern ganó 2-1 en el Bernabéu · Arsenal ganó 1-0 en Lisboa.
+</div>
+
+<div class="content">
+
+  <div class="antecedente">
+    <strong>Resultados del martes:</strong> Real Madrid 1-2 Bayern München (Bernabéu) · Sporting 0-1 Arsenal (Alvalade). Bayern sorprendió en Madrid. Arsenal ganó con gol de Havertz en el descuento. Dos series abiertas rumbo a la vuelta.
+  </div>
+
+  <div class="league-banner">UEFA Champions League — Cuartos de Final, Ida — Miércoles 8 de Abril</div>
+
+  <!-- BARCELONA vs ATLETICO -->
+  <div class="match-card">
+    <div class="match-header">
+      <div>
+        <div class="match-name">FC Barcelona vs Atlético de Madrid</div>
+        <div class="match-meta">Spotify Camp Nou, Barcelona | 8 Abr 2026 — 13:00 CST | Fox One · Disney+ · ESPN</div>
+      </div>
+      <div class="match-global">Clásico Español en Europa</div>
+    </div>
+    <div class="odds-strip">
+      <div class="odd-cell"><div class="odd-team">Barcelona</div><div class="odd-val odd-fav">-175</div></div>
+      <div class="odd-cell"><div class="odd-team">Empate</div><div class="odd-val odd-pos">+310</div></div>
+      <div class="odd-cell"><div class="odd-team">Atlético</div><div class="odd-val odd-pos">+450</div></div>
+      <div class="odd-cell"><div class="odd-team">Más de 2.5</div><div class="odd-val odd-fav">-155</div></div>
+      <div class="odd-cell"><div class="odd-team">Menos de 2.5</div><div class="odd-val odd-pos">+125</div></div>
+    </div>
+    <div class="stats-section">
+      <h4>Estadísticas comparativas</h4>
+      <table class="stats-table">
+        <tr><th>Categoría</th><th>FC Barcelona</th><th>Atlético Madrid</th></tr>
+        <tr><td>Octavos de final</td><td>Eliminó Newcastle 8-3 global</td><td>Eliminó Tottenham 7-5 global</td></tr>
+        <tr><td>Forma reciente (5 PJ)</td><td>V-V-V-E-V</td><td>D-V-V-D-V</td></tr>
+        <tr><td>Goles UCL (promedio/partido)</td><td>4.70 — el más alto del torneo</td><td>3.10</td></tr>
+        <tr><td>Over 2.5 en últimos partidos</td><td>90% de sus partidos</td><td>91% de sus partidos</td></tr>
+        <tr><td>Historial UCL directo</td><td>0V — Atlético ganó las 2 anteriores</td><td>2V (2013-14 y 2015-16, QF)</td></tr>
+        <tr><td>Resultado más reciente (LaLiga)</td><td>V 2-1 (visitante)</td><td>D 1-2 vs Barça hace 4 días</td></tr>
+      </table>
+    </div>
+    <div class="injuries-strip">
+      <div class="injury-side">
+        <div class="injury-title">Bajas Barcelona</div>
+        <div class="injury-item"><span class="injury-name">Marc Bernal</span><span class="badge-out">Baja — tobillo</span></div>
+        <div class="injury-item"><span class="injury-name">Andreas Christensen</span><span class="badge-out">Baja — rodilla</span></div>
+        <div class="injury-item"><span class="injury-name">Raphinha</span><span class="badge-out">Baja — bíceps femoral (Brasil)</span></div>
+        <div class="injury-item"><span class="injury-name">Lamine Yamal</span><span class="badge-ok">Disponible — figura (nota 8.67 vs Atlético)</span></div>
+        <div class="injury-item"><span class="injury-name">Robert Lewandowski</span><span class="badge-ok">Disponible — referente</span></div>
+        <div class="injury-item"><span class="injury-name">Fermín López</span><span class="badge-ok">Disponible — 6G 4A en UCL</span></div>
+      </div>
+      <div class="injury-side">
+        <div class="injury-title">Bajas Atlético</div>
+        <div class="injury-item"><span class="injury-name">Jan Oblak</span><span class="badge-out">Baja — lesión (juega Musso)</span></div>
+        <div class="injury-item"><span class="injury-name">Rodrigo Mendoza</span><span class="badge-out">Baja — lesión</span></div>
+        <div class="injury-item"><span class="injury-name">Pablo Barrios</span><span class="badge-out">Baja — lesión</span></div>
+        <div class="injury-item"><span class="injury-name">Julián Álvarez</span><span class="badge-ok">Disponible — 8 goles UCL</span></div>
+        <div class="injury-item"><span class="injury-name">Antoine Griezmann</span><span class="badge-ok">Disponible — experiencia clave</span></div>
+        <div class="injury-item"><span class="injury-name">Nahuel Molina</span><span class="badge-ok">Disponible — peligroso por derecha</span></div>
+      </div>
+    </div>
+    <div class="stakes-box">
+      <strong>Lo que está en juego</strong>
+      El duelo español de los cuartos — el cuarto partido entre ambos en esta temporada. Barça goleó 8-3 al Newcastle; Atlético eliminó al Tottenham 7-5. Ambos equipos promedian más del 90% de sus partidos con over 2.5. El dato que paraliza: Atlético ha ganado las dos únicas veces que se han enfrentado en Champions (2013-14 y 2015-16, ambas en cuartos). Sin Oblak en portería, Atlético llega más vulnerable. Sin Raphinha, Barça pierde su mejor momento de forma. El Camp Nou decide si Simeone puede dar otra sorpresa histórica en Europa.
+    </div>
+    <div class="analysis-section">
+      <h4>Análisis del Partido</h4>
+      <ul class="analysis-bullets">
+        <li><strong>El festival goleador está garantizado:</strong> 90% y 91% de over 2.5 respectivamente. Barcelona promedia 4.70 goles por partido en UCL — el más alto de los 8 equipos restantes. El under aquí no tiene mucho sentido histórico.</li>
+        <li><strong>Atlético ganó las 2 veces en Champions:</strong> 2013-14 y 2015-16, ambas en cuartos de final. Simeone sabe jugar eliminatorias como nadie. Sin Oblak, sin Barrios y sin Mendoza es diferente — pero Griezmann y Julián Álvarez siguen siendo peligrosísimos.</li>
+        <li><strong>Lamine Yamal vs la defensa colchonera:</strong> El joven español fue la figura del último duelo con nota 8.67. Atlético tendrá que neutralizarlo. Musso sustituyendo a Oblak es una ventaja clara para Barcelona en balones parados.</li>
+        <li><strong>Lectura de cuotas:</strong> Barcelona favorito sólido a -175. El over 2.5 a -155 es la apuesta con más valor — respaldado por el 90%+ de ambos equipos. Atlético a +450 es especulativo pero Simeone en Europa nunca se puede descartar del todo.</li>
+        <li><strong>Resultado más probable:</strong> Barcelona gana 3-1. Yamal y Lewandowski anotan. Julián Álvarez marca el descuento del Atlético. Serie se complica para los colchoneros de cara a la vuelta en el Metropolitano.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PSG vs LIVERPOOL -->
+  <div class="match-card">
+    <div class="match-header">
+      <div>
+        <div class="match-name">Paris Saint-Germain vs Liverpool FC</div>
+        <div class="match-meta">Parc des Princes, París | 8 Abr 2026 — 13:00 CST | Fox One · Disney+ · ESPN</div>
+      </div>
+      <div class="match-global">Campeón vs Finalista</div>
+    </div>
+    <div class="odds-strip">
+      <div class="odd-cell"><div class="odd-team">PSG</div><div class="odd-val odd-fav">-145</div></div>
+      <div class="odd-cell"><div class="odd-team">Empate</div><div class="odd-val odd-pos">+310</div></div>
+      <div class="odd-cell"><div class="odd-team">Liverpool</div><div class="odd-val odd-pos">+380</div></div>
+      <div class="odd-cell"><div class="odd-team">Más de 2.5</div><div class="odd-val odd-fav">-130</div></div>
+      <div class="odd-cell"><div class="odd-team">Menos de 2.5</div><div class="odd-val odd-pos">+105</div></div>
+    </div>
+    <div class="stats-section">
+      <h4>Estadísticas comparativas</h4>
+      <table class="stats-table">
+        <tr><th>Categoría</th><th>PSG</th><th>Liverpool</th></tr>
+        <tr><td>Octavos de final</td><td>Goleó Chelsea 8-2 global</td><td>Eliminó Galatasaray 4-1 global</td></tr>
+        <tr><td>Forma reciente (5 PJ)</td><td>V-V-V-V-D</td><td>D-D-D-V-D</td></tr>
+        <tr><td>Racha como local UCL</td><td>Marcó en 9 partidos consecutivos en casa</td><td>Perdió 4 de últimos 5 de visita</td></tr>
+        <tr><td>Historial UCL directo</td><td>Eliminó a Liverpool en penaltis (octavos 2024-25)</td><td>3V · 2D histórico</td></tr>
+        <tr><td>Baja impactante</td><td>Barcola (tobillo)</td><td>Alisson Becker (portero titular)</td></tr>
+        <tr><td>Último enfrentamiento</td><td colspan="2" style="text-align:center">PSG eliminó a Liverpool en penaltis (2024-25)</td></tr>
+      </table>
+    </div>
+    <div class="injuries-strip">
+      <div class="injury-side">
+        <div class="injury-title">Bajas PSG</div>
+        <div class="injury-item"><span class="injury-name">Bradley Barcola</span><span class="badge-out">Baja — tobillo</span></div>
+        <div class="injury-item"><span class="injury-name">Fabián Ruiz</span><span class="badge-doubt">Duda — rodilla</span></div>
+        <div class="injury-item"><span class="injury-name">Ousmane Dembélé</span><span class="badge-ok">Disponible — 2 goles vs Toulouse</span></div>
+        <div class="injury-item"><span class="injury-name">Khvicha Kvaratskhelia</span><span class="badge-ok">Disponible — apercibido</span></div>
+        <div class="injury-item"><span class="injury-name">João Neves</span><span class="badge-ok">Disponible — motor del medio</span></div>
+      </div>
+      <div class="injury-side">
+        <div class="injury-title">Bajas Liverpool</div>
+        <div class="injury-item"><span class="injury-name">Alisson Becker</span><span class="badge-out">Baja — bíceps femoral</span></div>
+        <div class="injury-item"><span class="injury-name">Conor Bradley</span><span class="badge-out">Baja — rodilla</span></div>
+        <div class="injury-item"><span class="injury-name">Wataru Endo</span><span class="badge-out">Baja — pie</span></div>
+        <div class="injury-item"><span class="injury-name">Mohamed Salah</span><span class="badge-ok">Disponible — 50 goles en UCL</span></div>
+        <div class="injury-item"><span class="injury-name">Florian Wirtz</span><span class="badge-ok">Disponible — figura del equipo</span></div>
+        <div class="injury-item"><span class="injury-name">Virgil van Dijk</span><span class="badge-ok">Disponible — apercibido</span></div>
+      </div>
+    </div>
+    <div class="stakes-box">
+      <strong>Lo que está en juego</strong>
+      El campeón vigente recibe al club inglés más completo del momento. PSG viene de golear 8-2 al Chelsea y lleva 4 victorias consecutivas. Liverpool llega en crisis: 4 derrotas en los últimos 5 partidos, goleado 4-0 por el City el fin de semana y sin Alisson Becker. La última vez que se enfrentaron en esta competición, PSG eliminó a Liverpool en penaltis. Salah alcanzó los 50 goles en Champions en la vuelta vs Galatasaray — esta noche buscará el 51. Dembélé vs Van Dijk. Kvaratskhelia vs Frimpong. El Parc des Princes encendido.
+    </div>
+    <div class="analysis-section">
+      <h4>Análisis del Partido</h4>
+      <ul class="analysis-bullets">
+        <li><strong>Liverpool llega en el peor momento:</strong> 4 derrotas en 5 partidos, incluyendo el 4-0 ante el City. Sin Alisson, su portero titular, en el Parc des Princes. Mamardashvili jugará uno de los partidos más importantes de su carrera. PSG marcó en sus últimos 16 partidos seguidos.</li>
+        <li><strong>PSG es el campeón vigente por algo:</strong> Golearon 8-2 al Chelsea en octavos. Dembélé está en su mejor momento de forma. Kvaratskhelia y Doué por las bandas son una pesadilla. Luis Enrique descansó al equipo posponiéndose su partido vs Lens para llegar frescos.</li>
+        <li><strong>El historial reciente pesa:</strong> PSG ya eliminó a Liverpool la temporada pasada en penaltis. Ese recuerdo está ahí. Ningún partido entre Liverpool y un rival francés ha terminado 0-0 en 36 encuentros europeos — habrá goles.</li>
+        <li><strong>Lectura de cuotas:</strong> PSG favorito a -145 en casa. Liverpool a +380 es el valor especulativo — si Salah aparece y Mamardashvili para algo. Over 2.5 a -130 tiene mucho respaldo: PSG promedia 4.25 goles por partido en esta UCL. El Parc des Princes no es lugar para partidos cerrados.</li>
+        <li><strong>Resultado más probable:</strong> PSG gana 3-1. Dembélé y Kvaratskhelia anotan. Salah marca para Liverpool pero no alcanza. PSG toma control de la eliminatoria.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CONCLUSIONES -->
+  <div class="conclusions">
+    <div class="conclusions-header">Conclusiones de la Jornada — <span>8 de Abril, 2026</span></div>
+    <div class="conclusions-grid">
+      <div class="conc-cell">
+        <div class="conc-label">Partido más atractivo</div>
+        <div class="conc-val">Barcelona vs Atlético</div>
+        <div class="conc-sub">4o duelo de la temporada entre ambos. Over 2.5 al 90%+ en los dos. Clásico español en Europa.</div>
+      </div>
+      <div class="conc-cell">
+        <div class="conc-label">Cuota de valor</div>
+        <div class="conc-val">Over 2.5 Barça vs Atlético</div>
+        <div class="conc-sub">Barça promedia 4.70 goles/partido en UCL. Atlético 91% over 2.5. La lógica manda.</div>
+      </div>
+      <div class="conc-cell">
+        <div class="conc-label">Dato contundente</div>
+        <div class="conc-val">Atlético ganó las 2 veces en UCL vs Barça</div>
+        <div class="conc-sub">2013-14 y 2015-16. Siempre en cuartos de final. Simeone en Europa no se descarta jamás.</div>
+      </div>
+      <div class="conc-cell">
+        <div class="conc-label">Equipo en crisis</div>
+        <div class="conc-val">Liverpool — 4D en últimos 5</div>
+        <div class="conc-sub">Sin Alisson, goleados 4-0 por el City. Llegan al Parc des Princes en el peor momento.</div>
+      </div>
+      <div class="conc-cell">
+        <div class="conc-label">Figura a seguir</div>
+        <div class="conc-val">Ousmane Dembélé — PSG</div>
+        <div class="conc-sub">2 goles vs Toulouse el fin de semana. PSG lo descansó vs Lens. Llega fresco y en estado de gracia.</div>
+      </div>
+      <div class="conc-cell">
+        <div class="conc-label">Sorpresa potencial</div>
+        <div class="conc-val">Salah 51° gol en Champions</div>
+        <div class="conc-sub">Llegó a 50 vs Galatasaray. Esta noche en París busca el 51 en su última temporada con Liverpool.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-footer">
+    <strong>Fuentes:</strong> Playdoit MX (cuotas), UEFA.com, Transfermarkt, ESPN, Goal.com, ClaroSports, Infobae<br>
+    <strong>Disclaimer:</strong> Este reporte es exclusivamente informativo. Las cuotas son orientativas y pueden variar. Lock Sports Data no constituye asesoramiento de apuestas.<br>
+    Generado el 8 de Abril, 2026 — Lock Sports Data
+  </div>
+
+</div>
+</body>
+</html>
